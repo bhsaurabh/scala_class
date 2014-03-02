@@ -15,7 +15,10 @@ object FixedPoint {
 		iterate(firstGuess)
 	} 
 
-	def sqrt(x: Double) = fixedPoint(y => (y + x/y)/2)(1.0)
+	def averageDamp(f: Double => Double)(x: Double): Double = 
+		(x + f(x))/2
+
+	def sqrt(x: Double) = fixedPoint(averageDamp(y => x/y))(1.0)
 
 	/* Unit testing */
 	def main(args: Array[String]) = {
