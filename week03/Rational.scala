@@ -14,20 +14,20 @@ class Rational(x: Int, y: Int) {
     
     
     // operations
-    def add(that: Rational): Rational = 
+    def + (that: Rational): Rational = 
         new Rational(numer * that.denom + denom * that.numer, denom * that.denom)
     
-    def neg: Rational = new Rational(-numer, denom)
+    def unary_- : Rational = new Rational(-numer, denom) // neg function using unary prefix -
     
-    def subtract(that: Rational): Rational = add(that.neg)
+    def - (that: Rational): Rational = this + -that // uses infix -
     
     
     // For representing rational
     override def toString = numer + "/" + denom
     
     // Comparison operations
-    def less(that: Rational) = numer * that.denom < that.numer * denom
+    def < (that: Rational) = numer * that.denom < that.numer * denom
     
     // get max rational
-    def max(that: Rational) = if (this.less(that)) that else this
+    def max(that: Rational) = if (this < that) that else this
 }
